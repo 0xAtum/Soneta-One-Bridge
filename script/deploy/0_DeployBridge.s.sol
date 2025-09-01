@@ -39,6 +39,7 @@ contract DeployBridgeScript is BaseScript {
   string private constant BRIDGE_CONTROLLER_NAME = "BridgeController";
 
   address private constant ONE_TOKEN = 0x4871c910877c4e89F72EC355FF709B2543c00375;
+  address private constant MS_SAFE_ADMIN = 0xf185BDa3d70079F181aae0486994633511A9121e;
 
   string[] private SUPPORTED_CHAINS = ["ethereum", "arbitrum", "sonic", "base", "bsc"];
 
@@ -94,6 +95,8 @@ contract DeployBridgeScript is BaseScript {
     _connectLayerZeroRead(bridgeController, lzConfig);
     console.log("Connecting lzWrite", _getNetwork());
     _connectLayerZeroWrite(bridgeController, bridge, lzConfig);
+
+    OneBridge(payable(bridge)).transferOwnership(MS_SAFE_ADMIN);
     vm.stopBroadcast();
   }
 
