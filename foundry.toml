@@ -1,0 +1,81 @@
+[profile.default]
+fs_permissions = [{ access = "read-write", path = "./"}]
+solc = '0.8.30'
+src = 'src'
+test = 'test'
+out = 'out'
+via_ir = true
+verbosity = 3
+auto_detect_remappings = false
+libs = [
+    # ./lib are refered in toolbox-foundry/lib
+    'node_modules/@layerzerolabs/toolbox-foundry/lib',
+    'node_modules',
+]
+
+remappings = [
+    'ds-test/=node_modules/@layerzerolabs/toolbox-foundry/lib/ds-test',
+    'forge-std/=node_modules/@layerzerolabs/toolbox-foundry/lib/forge-std',
+    '@layerzerolabs/=node_modules/@layerzerolabs/',
+    '@openzeppelin/=node_modules/@openzeppelin/',
+    '@layerzerolabs/script-devtools-evm-foundry/=node_modules/@layerzerolabs/script-devtools-evm-foundry/',
+    'solidity-bytes-utils/=node_modules/solidity-bytes-utils/',
+]
+
+[profile.e2e]
+match_path = "test/e2e/*"
+
+[profile.unit]
+block_number = 17373196
+block_timestamp = 1685467379
+no_match_path = "test/e2e/*"
+
+[fuzz]
+runs = 1024
+max_test_rejects = 65536
+seed = '0x3e8'
+dictionary_weight = 40
+include_storage = true
+include_push_bytes = true
+
+[rpc_endpoints]
+localhost = "http://127.0.0.1:8545"
+ethereum = "${RPC_MAINNET}"
+arbitrum = "${RPC_ARBITRUM}"
+sonic = "${RPC_SONIC}"
+base = "${RPC_BASE}"
+hyperliquid = "${RPC_HYPERLIQUID}"
+bsc = "${RPC_BSC}"
+sei = "${RPC_SEI}"
+
+
+[etherscan]
+mainnet   = { key = "${ETHERSCAN_API_KEY}" } 
+arbitrum = { key = "${ETHERSCAN_API_KEY}" }
+sonic = { key = "${ETHERSCAN_API_KEY}" }
+base = { key = "${ETHERSCAN_API_KEY}" }
+hyperliquid = { key = "${ETHERSCAN_API_KEY}", chain = 999, url = "https://api.etherscan.io/v2/api?chainid=999"}
+bsc = { key = "${ETHERSCAN_API_KEY}"}
+sei = { key = "${ETHERSCAN_API_KEY}", chain = 1329, url = "https://api.etherscan.io/v2/api?chainid=1329"}
+
+# [etherscan]
+# ethereum = { key = "${ETHERSCAN_KEY}", chain = 1, url = "https://api.etherscan.io/v2/api?chainid=1"}
+# arbitrum = { key = "${ARBISCAN_KEY}", chain = 42161, url = "https://api.etherscan.io/v2/api?chainid=42161"}
+# sonic = { key = "${SONIC_KEY}", chain = 146, url = "https://api.etherscan.io/v2/api?chainid=146"}
+# base = { key = "${BASE_KEY}", chain = 8453, url = "https://api.etherscan.io/v2/api?chainid=8453"}
+# hyperliquid = { key = "${HYPERLIQUID_KEY}", chain = 999, url = "https://api.etherscan.io/v2/api?chainid=999"}
+# bsc = { key = "${BSC_KEY}", chain = 56, url = "https://api.etherscan.io/v2/api?chainid=56"}
+# sei = { key = "${SEI_KEY}", chain = 1329, url = "https://api.etherscan.io/v2/api?chainid=1329"}
+
+
+[fmt]
+line_length = 120
+tab_width = 2
+bracket_spacing = true
+int_types = "long"
+func_attrs_with_params_multiline = true
+quote_style = "double"
+number_underscore = "thousands"
+wrap_comments = true
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config

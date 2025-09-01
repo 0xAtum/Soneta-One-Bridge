@@ -1,0 +1,10 @@
+[
+  {
+    "contractAddress": "0x2F613F11c676797E5dD6eB583C8AaBf030B9F50f",
+    "contractName": "BridgeOne"
+  },
+  {
+    "contractAddress": "0x356E26bAA0498C4cFbb3A42da6bfD565D90A2Fc0",
+    "contractName": "BridgeController"
+  }
+]
